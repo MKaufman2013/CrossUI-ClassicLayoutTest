@@ -7,6 +7,7 @@ xui.Class('App', 'xui.Module',{
             append(
                 xui.create("xui.APICaller")
                 .setHost(host,"api_1")
+                .setName("api_1")
                 .setQueryURL("https://api.coingecko.com/api/v3/simple/price?ids=0xCC4304A31d09258b0029eA7FE63d032f52e44EFe&vs_currencies=usd&include_24hr_change=true")
                 .setQueryMethod("GET")
             );
@@ -98,10 +99,13 @@ xui.Class('App', 'xui.Module',{
                         "desc":"Action 1",
                         "type":"control",
                         "target":"api_1",
-                        "args":[ ],
-                        "method":"invoke",
-                        "onOK":0,
-                        "onKO":1,
+                        "args":[
+                            {
+                                "queryURL":"https://api.coingecko.com/api/v3/simple/price?ids=0xCC4304A31d09258b0029eA7FE63d032f52e44EFe&vs_currencies=usd&include_24hr_change=true"
+                            },
+                            { }
+                        ],
+                        "method":"setProperties",
                         "okFlag":"_DI_succeed",
                         "koFlag":"_DI_fail",
                         "event":1
@@ -113,7 +117,7 @@ xui.Class('App', 'xui.Module',{
             
             return children;
             // ]]Code created by CrossUI RAD Studio
-},
+        },
     /**
          * Fired when user click it
          * @method onClick [xui.UI.Button event]
